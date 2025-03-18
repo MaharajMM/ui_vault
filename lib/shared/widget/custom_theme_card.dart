@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-
 import 'package:ui_vault/const/borders/app_borders.dart';
 import 'package:ui_vault/const/colors/app_colors.dart';
 
@@ -7,10 +6,10 @@ class CustomThemeCard extends StatelessWidget {
   final Widget child;
   final GlobalKey globalKey;
   const CustomThemeCard({
-    Key? key,
+    super.key,
     required this.child,
     required this.globalKey,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

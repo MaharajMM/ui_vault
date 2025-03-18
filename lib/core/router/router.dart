@@ -32,16 +32,26 @@ class AppRouter extends RootStackRouter {
       // initial: true,
     ),
     AutoRoute(
-      page: LoginBaseRoute.page,
-      path: '/base',
+      page: ForgotPasswordBaseRoute.page,
+      path: '/forgot-password-base',
+      // path: '/',
+      // initial: true,
       children: [
         RedirectRoute(
           path: '',
-          redirectTo: 'login',
+          redirectTo: 'forgot-password',
         ),
         AutoRoute(
-          page: LoginRoute.page,
-          path: 'login',
+          page: ForgotPasswordRoute.page,
+          path: 'forgot-password',
+        ),
+        AutoRoute(
+          page: VerifyOtpRoute.page,
+          path: 'verify-otp',
+        ),
+        AutoRoute(
+          page: ConfirmPasswordRoute.page,
+          path: 'confirm-password',
         ),
       ],
     ),

@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:ui_vault/const/colors/app_colors.dart';
 import 'package:ui_vault/const/resource.dart';
+import 'package:ui_vault/core/router/router.gr.dart';
 import 'package:ui_vault/shared/widget/buttons/app_primary_btn.dart';
 import 'package:ui_vault/shared/widget/custom_text_formfield.dart';
 import 'package:ui_vault/shared/widget/dot_widget.dart';
@@ -116,11 +118,11 @@ class _AuthFormState extends State<AuthForm> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              'Forgot Password?',
-              // style: TextStyle(
-              //   color: AppColors.kwhite,
-              // ),
+            GestureDetector(
+              onTap: () => context.navigateTo(
+                ForgotPasswordBaseRoute(),
+              ),
+              child: Text('Forgot Password?'),
             ),
           ],
         ),

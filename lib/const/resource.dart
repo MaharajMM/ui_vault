@@ -20,6 +20,10 @@ class R {
   static const String ASSETS_ILLUSTRATIONS_DISCOUNT_SVG =
       'assets/illustrations/discount.svg';
 
+  /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/illustrations/forgot_password.svg)
+  static const String ASSETS_ILLUSTRATIONS_FORGOT_PASSWORD_SVG =
+      'assets/illustrations/forgot_password.svg';
+
   /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/illustrations/search_category.svg)
   static const String ASSETS_ILLUSTRATIONS_SEARCH_CATEGORY_SVG =
       'assets/illustrations/search_category.svg';
