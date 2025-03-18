@@ -62,7 +62,7 @@ class IntroPageBodyArea extends StatelessWidget {
                   child: PrimaryButton(
                     labelText: "Dive In",
                     fontColor: AppColors.kPrimaryColor,
-                    onPressed: () => context.navigateTo(LoginBaseRoute()),
+                    onPressed: () => context.navigateTo(LoginRoute()),
                   ),
                 ),
                 20.heightBox,
@@ -70,7 +70,7 @@ class IntroPageBodyArea extends StatelessWidget {
                   delay: const Duration(milliseconds: 500),
                   child: PrimaryButton(
                     labelText: 'Start your journey',
-                    onPressed: () {},
+                    onPressed: () => context.navigateTo(SignUpRoute()),
                   ),
                 ),
               ],

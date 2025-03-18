@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:ui_vault/const/colors/app_colors.dart';
 import 'package:ui_vault/const/resource.dart';
-import 'package:ui_vault/features/login/view/widget/login_image_illustration.dart';
 import 'package:ui_vault/features/login/view/widget/login_sign_up_btn.dart';
 import 'package:ui_vault/shared/widget/animations/slide_animation_builder.dart';
 import 'package:ui_vault/shared/widget/buttons/app_primary_btn.dart';
@@ -13,73 +12,68 @@ import 'package:ui_vault/shared/widget/custom_theme_card.dart';
 import 'package:ui_vault/shared/widget/dot_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-@RoutePage(
-  deferredLoading: true,
-)
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+@RoutePage()
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return LoginView();
+    return SignUpView();
   }
 }
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
-  final _formKey = GlobalKey<FormBuilderState>();
+class _SignUpViewState extends State<SignUpView> {
+  final _signUpFormKey = GlobalKey<FormBuilderState>();
   bool _obscureText = true;
-  bool _hasScrolledToForm = false;
 
   final ScrollController _scrollController = ScrollController();
-  final FocusNode _emailFocusNode = FocusNode();
-  final FocusNode _passwordFocusNode = FocusNode();
-  final GlobalKey _blueContainerKey = GlobalKey();
+  final FocusNode _nameFocusNode = FocusNode();
+  final GlobalKey _signUpBlueContainerKey = GlobalKey();
+  bool _hasScrolledToForm = false; // Track if we've already scrolled
 
   @override
   void initState() {
     super.initState();
 
     // Add listeners to focus nodes
-    _emailFocusNode.addListener(_handleFocusChange);
-    _passwordFocusNode.addListener(_handleFocusChange);
+    _nameFocusNode.addListener(_handleFocusChange);
   }
 
   void _handleFocusChange() {
-    if ((_emailFocusNode.hasFocus || _passwordFocusNode.hasFocus) && !_hasScrolledToForm) {
+    if (_nameFocusNode.hasFocus && !_hasScrolledToForm) {
       _hasScrolledToForm = true;
       // Get the position of the blue container
       // You'll need to use a GlobalKey to get its position
-      final RenderBox renderBox = _blueContainerKey.currentContext?.findRenderObject() as RenderBox;
+      final RenderBox renderBox =
+          _signUpBlueContainerKey.currentContext?.findRenderObject() as RenderBox;
       final position = renderBox.localToGlobal(Offset.zero);
 
       // Animate scrolling to the blue container
       _scrollController.animateTo(
-        position.dy - 10, // Subtract a small offset to place it at the top with a little margin
+        position.dy - 100, // Subtract a small offset to place it at the top with a little margin
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
-
-      // Reset the flag when both fields lose focus
-      if (!_emailFocusNode.hasFocus && !_passwordFocusNode.hasFocus) {
-        _hasScrolledToForm = false;
-      }
+    }
+    // Reset the flag when both fields lose focus
+    if (!_nameFocusNode.hasFocus) {
+      _hasScrolledToForm = false;
     }
   }
 
   @override
   void dispose() {
-    _formKey.currentState?.dispose();
+    _signUpFormKey.currentState?.dispose();
     _scrollController.dispose();
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
-    _blueContainerKey.currentState?.dispose();
+    _nameFocusNode.dispose();
+    _signUpBlueContainerKey.currentState?.dispose();
 
     super.dispose();
   }
@@ -98,12 +92,17 @@ class _LoginViewState extends State<LoginView> {
                 children: [
                   SlideAnimationBuilder(
                     delay: Durations.short3,
-                    child: const LoginIllustrationImage().objectTopCenter().h(350),
+                    child: Image.asset(
+                      R.ASSETS_ILLUSTRATIONS_AUTH_ILLUSTRATION_2_PNG,
+                      fit: BoxFit.contain,
+                    ).objectTopCenter().h(350),
                   ),
                   Positioned(
                     top: 0,
                     right: 15,
-                    child: LoginSignUpBtn(),
+                    child: LoginSignUpBtn(
+                      isLogin: true,
+                    ),
                   ),
                 ],
               ),
@@ -119,25 +118,39 @@ class _LoginViewState extends State<LoginView> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Welcome back!',
+                            'Start Your Journey',
                             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                                   fontWeight: FontWeight.w600,
                                 ),
                           ),
-                          Text('Enter your email & password'),
+                          Text('Unlock Your Experience'),
                         ],
                       ),
                       20.heightBox,
                       CustomThemeCard(
-                        globalKey: _blueContainerKey,
+                        globalKey: _signUpBlueContainerKey,
                         child: FormBuilder(
-                          key: _formKey,
+                          key: _signUpFormKey,
                           child: Column(
                             children: [
                               // Email Field
                               CustomTextFormField(
+                                name: 'name',
+                                focusNode: _nameFocusNode,
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
+                                labelText: 'Name',
+                                prefixIcon: Icon(Icons.person, color: AppColors.grey800),
+                                validator: FormBuilderValidators.compose(
+                                  [
+                                    FormBuilderValidators.required(),
+                                  ],
+                                ),
+                              ),
+                              20.heightBox,
+                              // Email Field
+                              CustomTextFormField(
                                 name: 'Email',
-                                focusNode: _emailFocusNode,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 labelText: 'Email',
@@ -152,10 +165,33 @@ class _LoginViewState extends State<LoginView> {
                               20.heightBox,
                               CustomTextFormField(
                                 name: 'password',
-                                focusNode: _passwordFocusNode,
                                 labelText: 'Password',
+                                textInputAction: TextInputAction.next,
                                 isObscureText: _obscureText,
                                 prefixIcon: Icon(Icons.lock, color: AppColors.grey800),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _obscureText ? Icons.visibility : Icons.visibility_off,
+                                    color: AppColors.grey800,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                    });
+                                  },
+                                ),
+                                maxLine: 1,
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(),
+                                  FormBuilderValidators.minLength(6),
+                                ]),
+                              ),
+                              20.heightBox,
+                              CustomTextFormField(
+                                name: 'confirm_password',
+                                labelText: 'Confirm Password',
+                                isObscureText: _obscureText,
+                                prefixIcon: Icon(Icons.password, color: AppColors.grey800),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     _obscureText ? Icons.visibility : Icons.visibility_off,
@@ -187,7 +223,7 @@ class _LoginViewState extends State<LoginView> {
                               ),
                               12.heightBox,
                               PrimaryButton(
-                                labelText: 'Login',
+                                labelText: 'Sign Up',
                                 onPressed: () {},
                               ),
                               20.heightBox,

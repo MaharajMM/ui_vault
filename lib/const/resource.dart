@@ -8,6 +8,10 @@ class R {
   static const String ASSETS_ILLUSTRATIONS_AUTH_ILLUSTRATION_PNG =
       'assets/illustrations/auth_illustration.png';
 
+  /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/illustrations/auth_illustration_2.png)
+  static const String ASSETS_ILLUSTRATIONS_AUTH_ILLUSTRATION_2_PNG =
+      'assets/illustrations/auth_illustration_2.png';
+
   /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/illustrations/delivery.svg)
   static const String ASSETS_ILLUSTRATIONS_DELIVERY_SVG =
       'assets/illustrations/delivery.svg';
