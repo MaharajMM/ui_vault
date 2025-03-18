@@ -8,13 +8,13 @@ class AppRouter extends RootStackRouter {
   late final List<AutoRoute> routes = [
     AutoRoute(
       page: OnboardingRoute.page,
-      path: '/on',
+      path: '/',
+      initial: true,
     ),
     AutoRoute(
       page: IntroLoginRoute.page,
-      // path: '/intro-login',
-      path: '/',
-      initial: true,
+      path: '/intro-login',
+      // path: '/',
     ),
     AutoRoute(
       page: HomeRoute.page,

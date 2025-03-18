@@ -8,7 +8,7 @@ class DotWidget extends StatelessWidget {
   const DotWidget({
     super.key,
     this.dashHeight = 2,
-    this.dashColor = Colors.white,
+    this.dashColor = Colors.black,
     this.totalWidth = 300,
     this.dashWidth = 10,
     this.emptyWidth = 5,

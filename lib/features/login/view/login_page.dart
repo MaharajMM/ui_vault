@@ -1,16 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:ui_vault/const/colors/app_colors.dart';
-import 'package:ui_vault/const/resource.dart';
+import 'package:ui_vault/features/authentication/view/auth_form_view.dart';
 import 'package:ui_vault/features/login/view/widget/login_image_illustration.dart';
 import 'package:ui_vault/features/login/view/widget/login_sign_up_btn.dart';
 import 'package:ui_vault/shared/widget/animations/slide_animation_builder.dart';
 import 'package:ui_vault/shared/widget/buttons/app_primary_btn.dart';
-import 'package:ui_vault/shared/widget/custom_text_formfield.dart';
-import 'package:ui_vault/shared/widget/custom_theme_card.dart';
-import 'package:ui_vault/shared/widget/dot_widget.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 @RoutePage(
@@ -34,7 +30,6 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final _formKey = GlobalKey<FormBuilderState>();
-  bool _obscureText = true;
   bool _hasScrolledToForm = false;
 
   final ScrollController _scrollController = ScrollController();
@@ -127,106 +122,20 @@ class _LoginViewState extends State<LoginView> {
                           Text('Enter your email & password'),
                         ],
                       ),
-                      20.heightBox,
-                      CustomThemeCard(
-                        globalKey: _blueContainerKey,
-                        child: FormBuilder(
-                          key: _formKey,
-                          child: Column(
-                            children: [
-                              // Email Field
-                              CustomTextFormField(
-                                name: 'Email',
-                                focusNode: _emailFocusNode,
-                                keyboardType: TextInputType.emailAddress,
-                                textInputAction: TextInputAction.next,
-                                labelText: 'Email',
-                                prefixIcon: Icon(Icons.email, color: AppColors.grey800),
-                                validator: FormBuilderValidators.compose(
-                                  [
-                                    FormBuilderValidators.required(),
-                                    FormBuilderValidators.email(),
-                                  ],
-                                ),
-                              ),
-                              20.heightBox,
-                              CustomTextFormField(
-                                name: 'password',
-                                focusNode: _passwordFocusNode,
-                                labelText: 'Password',
-                                isObscureText: _obscureText,
-                                prefixIcon: Icon(Icons.lock, color: AppColors.grey800),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _obscureText ? Icons.visibility : Icons.visibility_off,
-                                    color: AppColors.grey800,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _obscureText = !_obscureText;
-                                    });
-                                  },
-                                ),
-                                maxLine: 1,
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(),
-                                  FormBuilderValidators.minLength(6),
-                                ]),
-                              ),
-                              12.heightBox,
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'Forgot Password?',
-                                    style: TextStyle(
-                                      color: AppColors.kwhite,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              12.heightBox,
-                              PrimaryButton(
-                                labelText: 'Login',
-                                onPressed: () {},
-                              ),
-                              20.heightBox,
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  DotWidget(
-                                    dashHeight: 2,
-                                    dashWidth: 5,
-                                    totalWidth: 100,
-                                  ),
-                                  Text(
-                                    'or Login with',
-                                    style: TextStyle(
-                                      color: AppColors.kwhite,
-                                    ),
-                                  ).pSymmetric(h: 8),
-                                  DotWidget(
-                                    dashHeight: 2,
-                                    dashWidth: 5,
-                                    totalWidth: 100,
-                                  ),
-                                ],
-                              ),
-                              20.heightBox,
-                              PrimaryButton(
-                                isIcon: true,
-                                icon: Image.asset(
-                                  R.ASSETS_IMAGES_GOOGLE_LOGO_PNG,
-                                  height: 30,
-                                ),
-                                fontColor: AppColors.kPrimaryColor,
-                                labelText: 'Login with Google',
-                                onPressed: () {},
-                              ),
-                            ],
+                      // 20.heightBox,
+                      Container(
+                        key: _blueContainerKey,
+                        child: AuthFormView(
+                          authBtn: PrimaryButton(
+                            color: AppColors.kPrimaryColor,
+                            fontColor: AppColors.kwhite,
+                            labelText: 'Login',
+                            onPressed: () {},
                           ),
+                          formKey: _formKey,
+                          isSignUp: false,
+                          emailFocusNode: _emailFocusNode,
+                          passwordFocusNode: _passwordFocusNode,
                         ),
                       ),
                       20.heightBox,
