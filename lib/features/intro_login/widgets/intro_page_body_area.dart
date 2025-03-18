@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ui_vault/const/app_defaults.dart';
 import 'package:ui_vault/const/colors/app_colors.dart';
+import 'package:ui_vault/core/router/router.gr.dart';
 import 'package:ui_vault/shared/widget/animations/slide_animation_builder.dart';
 import 'package:ui_vault/shared/widget/buttons/app_primary_btn.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -60,7 +62,7 @@ class IntroPageBodyArea extends StatelessWidget {
                   child: PrimaryButton(
                     labelText: "Dive In",
                     fontColor: AppColors.kPrimaryColor,
-                    onPressed: () {},
+                    onPressed: () => context.navigateTo(LoginBaseRoute()),
                   ),
                 ),
                 20.heightBox,

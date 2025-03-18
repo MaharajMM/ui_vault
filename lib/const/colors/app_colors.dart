@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class AppColors {
   AppColors._();
   //primary colors
@@ -32,4 +34,9 @@ class AppColors {
   static const Color blue700 = Color(0xFF2E5BCC);
   static const Color blue800 = Color(0xFF254AB3);
   static const Color blue900 = Color(0xFF1C3A99);
+
+  //alert colors
+  static const Color kErrorColor = Colors.red;
+  static const Color kSuccessColor = Colors.green;
+  static const Color kSuccessSecondaryColor = Color(0xFFCCFF00);
 }

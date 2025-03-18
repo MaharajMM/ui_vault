@@ -8,7 +8,7 @@ import 'package:ui_vault/const/colors/app_colors.dart';
 class Themes {
   static ThemeData get theme => FlexThemeData.light(
         colors: FlexSchemeColor.from(primary: AppColors.kPrimaryColor),
-        scaffoldBackground: AppColors.kBlack,
+        scaffoldBackground: AppColors.kwhite,
         // appBarBackground: AppColors.kSecondaryBgColor,
         applyElevationOverlayColor: true,
         // appBarStyle: FlexAppBarStyle.background,

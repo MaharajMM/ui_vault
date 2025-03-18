@@ -4,6 +4,10 @@
 class R {
   const R._();
 
+  /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/illustrations/auth_illustration.png)
+  static const String ASSETS_ILLUSTRATIONS_AUTH_ILLUSTRATION_PNG =
+      'assets/illustrations/auth_illustration.png';
+
   /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/illustrations/delivery.svg)
   static const String ASSETS_ILLUSTRATIONS_DELIVERY_SVG =
       'assets/illustrations/delivery.svg';
@@ -30,4 +34,8 @@ class R {
   /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/images/background_2.jpg)
   static const String ASSETS_IMAGES_BACKGROUND_2_JPG =
       'assets/images/background_2.jpg';
+
+  /// ![preview](file:///Users/maharajmadanmohan/Desktop/Development/Personal Flutter Projects/ui_vault/assets/images/google-logo.png)
+  static const String ASSETS_IMAGES_GOOGLE_LOGO_PNG =
+      'assets/images/google-logo.png';
 }

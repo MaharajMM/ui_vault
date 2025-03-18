@@ -51,7 +51,7 @@ class PrimaryButton extends StatelessWidget {
             ),
             icon: icon!,
             label: Text(
-              labelText.toUpperCase(),
+              labelText,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w600,
                     color: fontColor ?? AppColors.primary,
